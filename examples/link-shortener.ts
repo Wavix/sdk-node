@@ -5,8 +5,8 @@ import { wavix } from "./wavix"
 const main = async () => {
   // Get short links metrics
   const getShortLinksMetricsResponse = await wavix.linkShortener.getShortLinksMetrics({
-    from: "2023-01-01",
-    to: "2023-12-31"
+    from: new Date("2023-01-01"),
+    to: new Date()
   })
 
   console.log("Get short links metrics response", getShortLinksMetricsResponse)

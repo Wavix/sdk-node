@@ -26,8 +26,8 @@ export interface TranscribeCallByIdPayload {
 
 export interface SearchCallsBySpecificKeywordsOrPhrasesRequestBody {
   type: "received" | "placed"
-  from: string
-  to: string
+  from: Date
+  to: Date
   page: number
   per_page: number
   from_search?: string

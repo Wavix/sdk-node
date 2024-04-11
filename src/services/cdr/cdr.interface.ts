@@ -15,8 +15,8 @@ export interface CdrResponse {
 }
 
 export interface QueryParameters {
-  from: string
-  to: string
+  from: Date
+  to: Date
   type: CdrType
   disposition?: CdrCallDisposition
   from_search?: string
