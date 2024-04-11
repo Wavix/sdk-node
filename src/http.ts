@@ -32,7 +32,7 @@ class Http {
 
   public async post<T, U>(path: string, payload?: U, config?: AxiosRequestConfig): Promise<T> {
     try {
-      const response = await this.instance.post<T>(this.getUrl(path), this.parseParams<U>(payload), config)
+      const response = await this.instance.post<T>(this.getUrl(path), this.parsePayload<U>(payload), config)
       return response.data
     } catch (error) {
       return this.errorHandler(error as AxiosError) as T
@@ -41,7 +41,7 @@ class Http {
 
   public async put<T, U>(path: string, payload?: U): Promise<T> {
     try {
-      const response = await this.instance.put<T>(this.getUrl(path), this.parseParams<U>(payload))
+      const response = await this.instance.put<T>(this.getUrl(path), this.parsePayload<U>(payload))
       return response.data
     } catch (error) {
       return this.errorHandler(error as AxiosError) as T
@@ -50,7 +50,7 @@ class Http {
 
   public async patch<T, U>(path: string, payload?: U): Promise<T> {
     try {
-      const response = await this.instance.patch<T>(this.getUrl(path), this.parseParams<U>(payload))
+      const response = await this.instance.patch<T>(this.getUrl(path), this.parsePayload<U>(payload))
       return response.data
     } catch (error) {
       return this.errorHandler(error as AxiosError) as T
@@ -69,14 +69,14 @@ class Http {
   public paramsToQueryString(params?: object): string {
     if (!params || !Object.keys(params).length) return ""
 
-    const queryPrams = this.parseParams(params)
+    const queryPrams = this.parsePayload(params)
 
     return Object.keys(queryPrams)
       .map(key => `${String(key)}=${queryPrams[key]}`)
       .join("&")
   }
 
-  private parseParams<T = object>(params?: T): Partial<QueryParams> {
+  private parsePayload<T = object>(params?: T): Partial<QueryParams> {
     const queryPrams = { ...params } as Partial<T>
 
     // Convert Date object to ISO string
