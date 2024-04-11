@@ -4,8 +4,8 @@ import { wavix } from "./wavix"
 
 const main = async () => {
   const requiredParameters = {
-    from: "2023-06-01",
-    to: "2023-12-31",
+    from: new Date("2023-01-01"),
+    to: new Date(),
     type: "placed" as const,
     per_page: 1
   }

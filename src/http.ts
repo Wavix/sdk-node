@@ -1,5 +1,9 @@
 import axios, { AxiosInstance, AxiosError, AxiosRequestConfig } from "axios"
 
+interface QueryParams {
+  [k: string]: unknown
+}
+
 class Http {
   private appid: string
   private instance: AxiosInstance
@@ -28,7 +32,7 @@ class Http {
 
   public async post<T, U>(path: string, payload?: U, config?: AxiosRequestConfig): Promise<T> {
     try {
-      const response = await this.instance.post<T>(this.getUrl(path), payload, config)
+      const response = await this.instance.post<T>(this.getUrl(path), this.parsePayload<U>(payload), config)
       return response.data
     } catch (error) {
       return this.errorHandler(error as AxiosError) as T
@@ -37,7 +41,7 @@ class Http {
 
   public async put<T, U>(path: string, payload?: U): Promise<T> {
     try {
-      const response = await this.instance.put<T>(this.getUrl(path), payload)
+      const response = await this.instance.put<T>(this.getUrl(path), this.parsePayload<U>(payload))
       return response.data
     } catch (error) {
       return this.errorHandler(error as AxiosError) as T
@@ -46,7 +50,7 @@ class Http {
 
   public async patch<T, U>(path: string, payload?: U): Promise<T> {
     try {
-      const response = await this.instance.patch<T>(this.getUrl(path), payload)
+      const response = await this.instance.patch<T>(this.getUrl(path), this.parsePayload<U>(payload))
       return response.data
     } catch (error) {
       return this.errorHandler(error as AxiosError) as T
@@ -62,9 +66,28 @@ class Http {
     }
   }
 
-  public paramsToQueryString(params = {}): string {
-    const queryParameterKeys = Object.keys(params) as Array<keyof typeof params>
-    return queryParameterKeys.map(queryParameterKey => `${queryParameterKey}=${params[queryParameterKey]}`).join("&")
+  public paramsToQueryString(params?: object): string {
+    if (!params || !Object.keys(params).length) return ""
+
+    const queryPrams = this.parsePayload(params)
+
+    return Object.keys(queryPrams)
+      .map(key => `${String(key)}=${queryPrams[key]}`)
+      .join("&")
+  }
+
+  private parsePayload<T = object>(params?: T): Partial<QueryParams> {
+    const queryPrams = { ...params } as Partial<T>
+
+    // Convert Date object to ISO string
+    for (const key in queryPrams) {
+      if (queryPrams[key] instanceof Date) {
+        const date = queryPrams[key] as Date
+        queryPrams[key] = this.formatDate(date) as T[Extract<keyof T, string>]
+      }
+    }
+
+    return queryPrams
   }
 
   private getUrl(path: string) {
@@ -81,6 +104,14 @@ class Http {
     }
 
     return { success: false, message: "" }
+  }
+
+  private formatDate(date: Date): string {
+    const year = date.getFullYear()
+    const month = (date.getMonth() + 1).toString().padStart(2, "0")
+    const day = date.getDate().toString().padStart(2, "0")
+
+    return `${year}-${month}-${day}`
   }
 }
 

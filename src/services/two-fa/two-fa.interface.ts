@@ -1,8 +1,8 @@
 type TwoFaChannel = "sms" | "voice"
 
 export interface GetServiceVerificationsQueryParameters {
-  from: string
-  to: string
+  from: Date
+  to: Date
 }
 
 export interface CreateTwoFaVerificationPayload {

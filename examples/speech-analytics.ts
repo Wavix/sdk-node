@@ -5,8 +5,8 @@ import { wavix } from "./wavix"
 const main = async () => {
   // Search calls
   const searchCallsResponse = await wavix.speechAnalytics.searchCallsBySpecificKeywordsOrPhrases({
-    from: "2020-01-01",
-    to: "2023-12-31",
+    from: new Date("2020-01-01"),
+    to: new Date(),
     page: 1,
     per_page: 15,
     type: "received"

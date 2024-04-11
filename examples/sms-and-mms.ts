@@ -15,7 +15,11 @@ const main = async () => {
   console.log("Get sender id restrictions response", getSenderIdRestrictionsResponse)
 
   // Get account messages
-  const getAccountMessagesResponse = await wavix.smsAndMms.getAccountMessages({ sent_after: "2023-01-01", sent_before: "2023-12-31", type: "outbound" })
+  const getAccountMessagesResponse = await wavix.smsAndMms.getAccountMessages({
+    sent_after: new Date("2023-01-01"),
+    sent_before: new Date(),
+    type: "outbound"
+  })
 
   console.log("Get account messages response", getAccountMessagesResponse)
 

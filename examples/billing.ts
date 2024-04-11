@@ -5,8 +5,8 @@ import { wavix } from "./wavix"
 const main = async () => {
   // Get account transactions
   const getAccountTransactionsResponse = await wavix.billing.getAccountTransactions({
-    from_date: "2023-09-01",
-    to_date: "2023-12-31",
+    from_date: new Date("2023-09-01"),
+    to_date: new Date(),
     per_page: 10,
     page: 1
   })
