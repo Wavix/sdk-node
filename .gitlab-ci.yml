@@ -1,0 +1,52 @@
+image: "hub.unitedline.net/wavix/docker-images/node-mysql:20"
+
+stages:
+  - prepare
+  - checks
+
+deps:node:
+  stage: prepare
+  script:
+    - yarn install
+  cache:
+    key: "wavix-sdk-node"
+    paths:
+      - node_modules
+    policy: pull-push
+
+eslint:
+  stage: checks
+  script:
+    - yarn install
+    - npx eslint ./src --ext .ts  --quiet
+  dependencies:
+    - deps:node
+  cache:
+    key: "wavix-sdk-node"
+    paths:
+      - node_modules/
+    policy: pull
+
+typescript:
+  stage: checks
+  script:
+    - yarn install
+    - npx tsc --project tsconfig.json --noEmit
+  dependencies:
+    - deps:node
+  cache:
+    key: "wavix-sdk-node"
+    paths:
+      - node_modules/
+    policy: pull
+
+prettier:
+  stage: checks
+  script:
+    - yarn install
+    - npx prettier -c "./src/**/*.ts"
+  cache:
+    key: "wavix-sdk-node"
+    paths:
+      - node_modules/
+    policy: pull

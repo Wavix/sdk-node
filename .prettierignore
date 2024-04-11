@@ -1,0 +1,7 @@
+# Ignore artifacts:
+lib
+config
+node_modules
+tsconfig.json
+package.json
+yarn.lock
