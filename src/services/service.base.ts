@@ -1,5 +1,7 @@
 import Http from "../http"
 
+import { Options } from "../interface"
+
 abstract class ServiceBase {
   readonly options: Options
   readonly http: Http
