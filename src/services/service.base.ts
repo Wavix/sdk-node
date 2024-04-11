@@ -1,14 +1,19 @@
 import Http from "../http"
 
 abstract class ServiceBase {
-  static baseURL = "https://api.wavix.com"
-
   readonly options: Options
   readonly http: Http
 
+  protected baseURL = "https://api.wavix.com"
+
   constructor(options: Options) {
     this.options = options
-    this.http = new Http(ServiceBase.baseURL, options.appid)
+
+    if (options.baseURL) {
+      this.baseURL = options.baseURL
+    }
+
+    this.http = new Http(this.baseURL, options.appid)
   }
 }
 

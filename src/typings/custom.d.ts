@@ -1,5 +1,6 @@
 interface Options {
   appid: string
+  baseURL?: string
 }
 
 interface ErrorResponse {

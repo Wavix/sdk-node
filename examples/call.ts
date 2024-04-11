@@ -7,7 +7,7 @@ wavix.call.onEvent(event => {
   console.log("Websocket Event", event)
 
   if (event.event_type === "answered") {
-    wavix.call.playAudio(event.uuid, "https://tts.wavix.net/tts/asterisk?text=This%20is%20a%20test%20call")
+    wavix.call.playAudio(event.uuid, "https://<YOUR AUDIO FILE>")
 
     setTimeout(() => {
       wavix.call.collectDTMF(event.uuid, {
@@ -16,7 +16,7 @@ wavix.call.onEvent(event => {
         timeout: 10,
         termination_character: "#",
         audio: {
-          url: "https://tts.wavix.net/tts/asterisk?text=Please%20enter%20your%20PIN%20code"
+          url: "https://<YOUR AUDIO FILE>"
         }
       })
     }, 1000)
@@ -33,7 +33,7 @@ wavix.call.onEvent(event => {
 const main = async () => {
   try {
     await wavix.call.connect()
-    const response = await wavix.call.start({ from: "", to: "", status_callback: "https://mock.qa1.wavix.dev/api/calls" })
+    const response = await wavix.call.start({ from: "", to: "" })
 
     if (response.uuid) {
       console.log("Call started!", response)

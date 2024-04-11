@@ -25,7 +25,7 @@ class Call extends ServiceBase {
   }
 
   public connect(): Promise<void | Error> {
-    const url = new URL(ServiceBase.baseURL)
+    const url = new URL(this.baseURL)
 
     return new Promise((resolve, reject) => {
       this.ws = new WebSocket(`wss://${url.host}/sip?appid=${this.options.appid}`)

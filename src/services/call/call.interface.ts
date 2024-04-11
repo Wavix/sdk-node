@@ -22,9 +22,10 @@ export interface TerminateResponse {
 export interface StartCall {
   from: string
   to: string
-  status_callback: string
+  status_callback?: string
   call_recording?: boolean
   machine_detection?: boolean
+  max_duration?: number
 }
 
 export interface CallEvent {
