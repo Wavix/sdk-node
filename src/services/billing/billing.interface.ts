@@ -47,8 +47,8 @@ export enum TransactionType {
 }
 
 export interface GetAccountTransactionsQueryParameters {
-  from_date: string
-  to_date: string
+  from_date: Date
+  to_date: Date
   type?: TransactionType
   details_contains?: string
   payments?: boolean

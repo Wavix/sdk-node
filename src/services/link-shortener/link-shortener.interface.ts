@@ -1,6 +1,6 @@
 export interface GetShortLinksMetricsQueryParameters {
-  from: string
-  to: string
+  from: Date
+  to: Date
   phone?: string
   utm_campaign?: string
 }

@@ -40,8 +40,8 @@ export interface GetSenderIdRestrictionsQueryParameters {
 }
 
 export interface GetAccountMessagesQueryParameters {
-  sent_after: string
-  sent_before: string
+  sent_after: Date
+  sent_before: Date
   type: MessageDirection
   from?: string
   to?: string

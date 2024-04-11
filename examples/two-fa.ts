@@ -4,9 +4,9 @@ import { wavix } from "./wavix"
 
 const main = async () => {
   // Get 2fa service verifications
-  const getServiceVerificationsResponse = await wavix.twoFa.getServiceVerifications("", {
-    from: "2023-01-01",
-    to: "2023-12-31"
+  const getServiceVerificationsResponse = await wavix.twoFa.getServiceVerifications("768ebdd0d6cd11eeb747cf64b69796fawf", {
+    from: new Date("2023-01-01"),
+    to: new Date()
   })
 
   console.log("Get 2fa service verifications response", getServiceVerificationsResponse)
