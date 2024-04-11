@@ -16,7 +16,7 @@ yarn add wavix-sdk
 
 # Using
 ```typescript
-import wavix from "wavix-sdk"
+import Wavix from "wavix-sdk"
 
 const wavix = new Wavix({ appid: "<YOUR APPID>" }) 
 
