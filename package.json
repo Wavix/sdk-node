@@ -5,9 +5,7 @@
   "types": "./lib/cjs/types/index.d.ts",
   "type": "commonjs",
   "license": "MIT",
-  "publishConfig": {
-    "@wavix-sdk-js:registry": " https://ci.unitedline.net/api/v4/projects/21122/packages/npm/"
-  },
+  "author": "Wavix Inc. <product@wavix.com>",
   "scripts": {
     "clean": "rm -rf ./lib",
     "type": "tsc --project tsconfig.json --noEmit",
