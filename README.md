@@ -36,6 +36,7 @@ You can also find examples in the "examples" directory.
 - SIP trunks ✅
 - Call Detail Records (CDRs) ✅
 - Speech analytics ✅
+- Voice campaigns ✅
 - SMS and MMS ✅
 - Link Shortener ✅
 - E911 ✅
