@@ -15,11 +15,12 @@ import {
   SmsAndMms,
   VoiceCampaigns
 } from "./services"
+
+import type { Options } from "./interface"
+
 export type { CallEvent } from "./services"
 
 export default class Wavix {
-  private options: Options
-
   public call: Call
   public numberValidation: NumberValidation
   public cdr: Cdr
@@ -37,7 +38,6 @@ export default class Wavix {
   public e911: E911
 
   constructor(options: Options) {
-    this.options = options
     this.call = new Call(options)
     this.numberValidation = new NumberValidation(options)
     this.cdr = new Cdr(options)

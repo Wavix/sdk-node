@@ -1,8 +1,3 @@
-interface Options {
-  appid: string
-  baseURL?: string
-}
-
 interface ErrorResponse {
   success: boolean
   message: string
