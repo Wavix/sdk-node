@@ -1,6 +1,6 @@
 {
   "name": "wavix-sdk",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "./lib/cjs/index.js",
   "types": "./lib/cjs/types/index.d.ts",
   "type": "commonjs",
