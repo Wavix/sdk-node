@@ -1,5 +1,3 @@
-## API
-
 # Wavix Node.js SDK
 
 Wavix Node.js SDK provides convenient and easy-to-understand functions for interacting with the Wavix API. You can use this package to integrate your Node.js application or service with Wavix functionality.
