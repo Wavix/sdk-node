@@ -14,6 +14,20 @@ export interface CdrResponse {
   uuid: string
 }
 
+export interface CdrResponseDetails {
+  uuid: string
+  charge: string
+  date: Date
+  destination: string
+  disposition: string
+  duration: number
+  from: string
+  per_minute: string
+  recording_url: string | null
+  sip_trunk: string
+  to: string
+}
+
 export interface QueryParameters {
   from: Date
   to: Date
