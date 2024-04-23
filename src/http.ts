@@ -94,12 +94,12 @@ class Http {
     return `${this.baseURL}${path}${path.includes("?") ? "&" : "?"}appid=${this.appid}`
   }
 
-  private errorHandler(error: AxiosError): unknown {
+  private errorHandler(error: AxiosError): ErrorResponse {
     if (axios.isAxiosError(error)) {
       const serverError = error as AxiosError<ErrorResponse>
 
       if (serverError && serverError.response) {
-        return serverError.response.data
+        return { success: false, message: serverError.response?.data?.message || "" }
       }
     }
 
