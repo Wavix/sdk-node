@@ -23,7 +23,7 @@ export interface CdrResponseDetails {
   duration: number
   from: string
   per_minute: string
-  recording_url: string
+  recording_url: string | null
   sip_trunk: string
   to: string
 }
