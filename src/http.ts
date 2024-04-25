@@ -21,9 +21,9 @@ class Http {
     })
   }
 
-  public async get<T>(path: string): Promise<T> {
+  public async get<T>(path: string, config?: AxiosRequestConfig): Promise<T> {
     try {
-      const response = await this.instance.get<T>(this.getUrl(path))
+      const response = await this.instance.get<T>(this.getUrl(path), config)
       return response.data
     } catch (error) {
       return this.errorHandler(error as AxiosError) as T
