@@ -10,10 +10,6 @@ class Cdr extends ServiceBase {
   public async get(uuid: string): Promise<CdrResponseDetails | ErrorResponse> {
     return await this.http.get<CdrResponseDetails>(`/v1/cdr/${uuid}`)
   }
-
-  public async downloadRecording(uuid: string): Promise<ArrayBuffer | ErrorResponse> {
-    return await this.http.get(`/v1/recordings/${uuid}`)
-  }
 }
 
 export { Cdr }
