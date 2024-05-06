@@ -19,7 +19,7 @@ interface Callback {
 }
 
 class Call extends ServiceBase {
-  static reconnectTimeout = 1000
+  static reconnectInterval = 1000
 
   private ws: WebSocket | null = null
   private callback: Callback = {
@@ -37,7 +37,7 @@ class Call extends ServiceBase {
       }
 
       this.ws.onclose = () => {
-        setTimeout(this.connect.bind(this), Call.reconnectTimeout)
+        setTimeout(this.connect.bind(this), Call.reconnectInterval)
       }
 
       this.ws.onerror = error => {
