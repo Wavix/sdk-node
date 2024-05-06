@@ -19,6 +19,8 @@ interface Callback {
 }
 
 class Call extends ServiceBase {
+  static reconnectTimeout = 1000
+
   private ws: WebSocket | null = null
   private callback: Callback = {
     onEvent: []
@@ -32,6 +34,10 @@ class Call extends ServiceBase {
 
       this.ws.onmessage = event => {
         this.callback.onEvent.forEach(cb => cb(event.data.toString()))
+      }
+
+      this.ws.onclose = () => {
+        setTimeout(this.connect.bind(this), Call.reconnectTimeout)
       }
 
       this.ws.onerror = error => {
