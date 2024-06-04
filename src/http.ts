@@ -21,48 +21,48 @@ class Http {
     })
   }
 
-  public async get<T>(path: string, config?: AxiosRequestConfig): Promise<T> {
+  public async get<T>(path: string, config?: AxiosRequestConfig): Promise<T | ErrorResponse> {
     try {
       const response = await this.instance.get<T>(this.getUrl(path), config)
       return response.data
     } catch (error) {
-      return this.errorHandler(error as AxiosError) as T
+      return this.errorHandler(error as AxiosError)
     }
   }
 
-  public async post<T, U>(path: string, payload?: U, config?: AxiosRequestConfig): Promise<T> {
+  public async post<T, U>(path: string, payload?: U, config?: AxiosRequestConfig): Promise<T | ErrorResponse> {
     try {
       const response = await this.instance.post<T>(this.getUrl(path), this.parsePayload<U>(payload), config)
       return response.data
     } catch (error) {
-      return this.errorHandler(error as AxiosError) as T
+      return this.errorHandler(error as AxiosError)
     }
   }
 
-  public async put<T, U>(path: string, payload?: U): Promise<T> {
+  public async put<T, U>(path: string, payload?: U): Promise<T | ErrorResponse> {
     try {
       const response = await this.instance.put<T>(this.getUrl(path), this.parsePayload<U>(payload))
       return response.data
     } catch (error) {
-      return this.errorHandler(error as AxiosError) as T
+      return this.errorHandler(error as AxiosError)
     }
   }
 
-  public async patch<T, U>(path: string, payload?: U): Promise<T> {
+  public async patch<T, U>(path: string, payload?: U): Promise<T | ErrorResponse> {
     try {
       const response = await this.instance.patch<T>(this.getUrl(path), this.parsePayload<U>(payload))
       return response.data
     } catch (error) {
-      return this.errorHandler(error as AxiosError) as T
+      return this.errorHandler(error as AxiosError)
     }
   }
 
-  public async delete<T>(path: string): Promise<T> {
+  public async delete<T>(path: string): Promise<T | ErrorResponse> {
     try {
       const response = await this.instance.delete<T>(this.getUrl(path))
       return response.data
     } catch (error) {
-      return this.errorHandler(error as AxiosError) as T
+      return this.errorHandler(error as AxiosError)
     }
   }
 
