@@ -64,11 +64,11 @@ class Call extends ServiceBase {
     this.callback.onEvent.push(onEventCallback)
   }
 
-  public getList(): Promise<CallResponse> {
+  public getList(): Promise<CallResponse | ErrorResponse> {
     return this.http.get<CallResponse>("/v1/call")
   }
 
-  public start(payload: StartCall): Promise<CallEvent & StartCallErrorResponse> {
+  public start(payload: StartCall): Promise<(CallEvent & StartCallErrorResponse) | ErrorResponse> {
     return this.http.post<CallEvent & StartCallErrorResponse, StartCall>("/v1/call", {
       ...payload,
       call_recording: payload.call_recording || false,
