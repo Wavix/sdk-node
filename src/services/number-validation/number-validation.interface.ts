@@ -3,22 +3,22 @@ export type NumberValidationType = "format" | "analysis" | "validation"
 
 export interface NumberValidationBody {
   phone_number: string
-  is_valid: boolean
+  valid: boolean
   country_code: string
   e164_format: string
   national_format: string
-  ported: boolean
+  charge: number
   mcc: string
   mnc: string
-  phone_type: string
+  ported: boolean
+  number_type: string
   carrier_name: string
   risky_destination: boolean
   unallocated_range: boolean
-  reachable: boolean
-  roaming: boolean
   timezone: string
-  cost: string
-  error_code: string
+  reachable: boolean | null
+  roaming: boolean | null
+  error_code: number
 }
 
 export interface NumberValidationBatchPayload {
